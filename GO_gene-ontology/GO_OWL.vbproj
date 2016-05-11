@@ -134,6 +134,7 @@
     <Compile Include="MySQL\Tables\term_property.vb" />
     <Compile Include="MySQL\Tables\term_subset.vb" />
     <Compile Include="MySQL\Tables\term_synonym.vb" />
+    <Compile Include="OWL\Ontology.vb" />
     <Compile Include="Reflections\Field.vb" />
     <Compile Include="AnnotationFile\Obo\Term.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
