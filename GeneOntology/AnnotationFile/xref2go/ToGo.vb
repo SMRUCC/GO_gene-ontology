@@ -44,10 +44,12 @@ Namespace xref2go
 
         Dim __uid As uid
 
+        Public ReadOnly Property Parser As XrefIdTypes
+
         Public ReadOnly Property xrefId As uid
             Get
                 If __uid Is Nothing Then
-                    __uid = DbXrefID.Parse(Of uid)
+                    __uid = DbXrefID.Parse(Of uid)(Parser)
                 End If
                 Return __uid
             End Get
@@ -64,7 +66,7 @@ Namespace xref2go
         ''' <param name="DbXrefHead">COG/EC/MetaCyc/KEGG/Pfam/Reactome/SMART</param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function LoadDocument(Path As String, DbXrefHead As String) As ToGo(Of uid)()
+        Public Shared Function LoadDocument(Path As String, DbXrefHead As XrefIdTypes) As ToGo(Of uid)()
             Dim reads = LinqAPI.Exec(Of NamedValue(Of String)) <=
  _
                 From s As String
@@ -82,7 +84,8 @@ Namespace xref2go
                 Select New ToGo(Of uid) With {
                     .DbXrefID = s.Name,
                     .GO_ID = id,
-                    .FunctionAnnotation = annotation
+                    .FunctionAnnotation = annotation,
+                    ._Parser = DbXrefHead
                 }
 
             Return LQuery
