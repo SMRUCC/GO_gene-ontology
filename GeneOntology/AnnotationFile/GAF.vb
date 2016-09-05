@@ -29,6 +29,7 @@ Imports System.Reflection
 Imports System.Text
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
+Imports SMRUCC.genomics.foundation.OBO_Foundry
 
 ''' <summary>
 ''' GO Annotation File (GAF) Format 2.0

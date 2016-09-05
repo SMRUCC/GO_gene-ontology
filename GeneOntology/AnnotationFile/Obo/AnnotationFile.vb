@@ -27,9 +27,10 @@
 
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
+Imports SMRUCC.genomics.foundation.OBO_Foundry
 
 ''' <summary>
-''' go.obo(Go注释功能定义文件)
+''' go.obo/go-basic.obo(Go注释功能定义文件)
 ''' </summary>
 ''' <remarks></remarks>
 Public Class AnnotationFile
