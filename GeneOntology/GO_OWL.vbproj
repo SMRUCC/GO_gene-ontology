@@ -167,7 +167,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnnotationFile\NCBI\gene2go.vb" />
-    <Compile Include="AnnotationFile\ToGo.vb" />
+    <Compile Include="AnnotationFile\xref2go\XrefId.vb" />
+    <Compile Include="AnnotationFile\xref2go\ToGo.vb" />
     <Compile Include="AnnotationFile\Obo\AnnotationFile.vb" />
     <Compile Include="AnnotationFile\GAF.vb" />
     <Compile Include="AnnotationFile\Obo\Head.vb" />
