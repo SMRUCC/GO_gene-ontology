@@ -19,3 +19,11 @@ The following areas are outside the scope of GO, and terms in these domains will
 + Protein-protein interactions.
 + Environment, evolution and expression.
 + Anatomical or histological features above the level of cellular components, including cell types.
+
+
+### Development References
+
++ https://github.com/xieguigang/VisualBasic_AppFramework
++ https://github.com/SMRUCC/GCModeller.Core
++ https://github.com/SMRUCC/SBML
++ https://github.com/xieguigang/VisualBasic.DBI
