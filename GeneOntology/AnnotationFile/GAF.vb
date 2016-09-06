@@ -29,6 +29,7 @@ Imports System.Reflection
 Imports System.Text
 Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.foundation.OBO_Foundry
 
 ''' <summary>
@@ -405,11 +406,11 @@ Public Class GAF
             Select strLine
 
         Dim ClassSchemaBuffer = From x
-                                In Field.LoadClassSchema(Of GAF)()
+                                In LoadClassSchema(Of GAF)().Values
                                 Select x
-                                Order By x.Key.Index Ascending
+                                Order By x.Field.Index Ascending
 
-        Dim ClassSchema = (From item In ClassSchemaBuffer Select item.Value).ToArray
+        Dim ClassSchema = ClassSchemaBuffer.ToArray(Function(x) x.Property)
         Dim LQuery = (From strLine As String In strLines Select Load(strLine, ClassSchema)).ToArray
         Return LQuery
     End Function
