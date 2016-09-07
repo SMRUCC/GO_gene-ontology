@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{6813383D-0F5E-4B05-8BD0-DBD308FB7E89}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Exe</OutputType>
+    <MyType>Console</MyType>
+    <RootNamespace>obographs</RootNamespace>
+    <AssemblyName>obographs</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <DefineConstants>DEBUG=1,TRACE=1</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <DefineConstants>TRACE=1</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="obographs\io\OgJsonGenerator.vb" />
+    <Compile Include="obographs\io\OgJsonReader.vb" />
+    <Compile Include="obographs\io\OgSchemaGenerator.vb" />
+    <Compile Include="obographs\io\OgYamlGenerator.vb" />
+    <Compile Include="obographs\io\OgYamlReader.vb" />
+    <Compile Include="obographs\io\package-info.vb" />
+    <Compile Include="obographs\io\PrefixHelper.vb" />
+    <Compile Include="obographs\model\axiom\AbstractAxiom.vb" />
+    <Compile Include="obographs\model\axiom\AbstractExpression.vb" />
+    <Compile Include="obographs\model\axiom\Axiom.vb" />
+    <Compile Include="obographs\model\axiom\EquivalentNodesSet.vb" />
+    <Compile Include="obographs\model\axiom\ExistentialRestrictionExpression.vb" />
+    <Compile Include="obographs\model\axiom\Expression.vb" />
+    <Compile Include="obographs\model\axiom\LogicalDefinitionAxiom.vb" />
+    <Compile Include="obographs\model\axiom\package-info.vb" />
+    <Compile Include="obographs\model\Edge.vb" />
+    <Compile Include="obographs\model\Graph.vb" />
+    <Compile Include="obographs\model\GraphDocument.vb" />
+    <Compile Include="obographs\model\Meta.vb" />
+    <Compile Include="obographs\model\meta\AbstractPropertyValue.vb" />
+    <Compile Include="obographs\model\meta\BasicPropertyValue.vb" />
+    <Compile Include="obographs\model\meta\DefinitionPropertyValue.vb" />
+    <Compile Include="obographs\model\meta\package-info.vb" />
+    <Compile Include="obographs\model\meta\PropertyValue.vb" />
+    <Compile Include="obographs\model\meta\SynonymPropertyValue.vb" />
+    <Compile Include="obographs\model\meta\XrefPropertyValue.vb" />
+    <Compile Include="obographs\model\Node.vb" />
+    <Compile Include="obographs\model\NodeOrEdge.vb" />
+    <Compile Include="obographs\model\package-info.vb" />
+    <Compile Include="obographs\owlapi\FromOwl.vb" />
+    <Compile Include="obographs\owlapi\package-info.vb" />
+    <Compile Include="obographs\owlapi\SynonymVocabulary.vb" />
+    <Compile Include="obographs\package-info.vb" />
+    <Compile Include="obographs\runner\package-info.vb" />
+    <Compile Include="obographs\runner\RunEngine.vb" />
+    <Compile Include="Program.vb" />
+    <Compile Include="Properties\AssemblyInfo.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obographs" />
+    <Folder Include="obographs\io" />
+    <Folder Include="obographs\model" />
+    <Folder Include="obographs\model\axiom" />
+    <Folder Include="obographs\model\meta" />
+    <Folder Include="obographs\owlapi" />
+    <Folder Include="obographs\runner" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
