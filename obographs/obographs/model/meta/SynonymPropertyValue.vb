@@ -43,7 +43,7 @@ Namespace org.geneontology.obographs.model.meta
 			hasRelatedSynonym
 		End Enum
 
-		Private Sub New(ByVal builder As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
+		Private Sub New(builder As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
 			MyBase.New(builder)
 		End Sub
 
@@ -67,21 +67,21 @@ Namespace org.geneontology.obographs.model.meta
 		Public Class Builder
 			Inherits AbstractPropertyValue.Builder
 
-			Public Overrides Function val(ByVal ___val As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overrides Function val(___val As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				Return CType(MyBase.val(___val), org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
 			End Function
 
-			Public Overrides Function xrefs(ByVal ___xrefs As IList(Of String)) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overrides Function xrefs(___xrefs As IList(Of String)) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				Return CType(MyBase.xrefs(___xrefs), org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
 			End Function
 
-			Public Overridable Function addType(ByVal type As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overridable Function addType(type As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				' TODO: decide on pattern for nested builders
 				MyBase.meta((New org.geneontology.obographs.model.Meta.Builder).subsets(java.util.Collections.singletonList(type)).build())
 				Return Me
 			End Function
 
-			Public Overridable Function scope(ByVal ___scope As SCOPES) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overridable Function scope(___scope As SCOPES) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				Dim pred As PREDS = PREDS.hasRelatedSynonym
 				Select Case ___scope
 				Case SCOPES.EXACT

@@ -10,7 +10,7 @@ Namespace org.geneontology.obographs.model
 	Public Class Edge
 		Implements NodeOrEdge
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			[sub] = builder.sub
 			pred = builder.pred
 			obj = builder.obj
@@ -72,21 +72,21 @@ Namespace org.geneontology.obographs.model
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private ___meta As Meta
 
-			Public Overridable Function [sub](ByVal subj As String) As Builder
+			Public Overridable Function [sub](subj As String) As Builder
 				Me.___sub = subj
 				Return Me
 			End Function
-			Public Overridable Function obj(ByVal ___obj As String) As Builder
+			Public Overridable Function obj(___obj As String) As Builder
 				Me.___obj = ___obj
 				Return Me
 			End Function
 
-			Public Overridable Function pred(ByVal ___pred As String) As Builder
+			Public Overridable Function pred(___pred As String) As Builder
 				Me.___pred = ___pred
 				Return Me
 			End Function
 
-			Public Overridable Function meta(ByVal ___meta As Meta) As Builder
+			Public Overridable Function meta(___meta As Meta) As Builder
 				Me.___meta = ___meta
 				Return Me
 			End Function

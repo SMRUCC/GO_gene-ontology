@@ -14,7 +14,7 @@ Namespace org.geneontology.obographs.model.axiom
 	Public Class ExistentialRestrictionExpression
 		Inherits AbstractExpression
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			MyBase.New(builder)
 			fillerId = builder.fillerId
 			propertyId = builder.propertyId
@@ -53,12 +53,12 @@ Namespace org.geneontology.obographs.model.axiom
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private ___fillerId As String
 
-			Public Overridable Function propertyId(ByVal ___propertyId As String) As Builder
+			Public Overridable Function propertyId(___propertyId As String) As Builder
 				Me.___propertyId = ___propertyId
 				Return Me
 			End Function
 
-			Public Overridable Function fillerId(ByVal ___fillerId As String) As Builder
+			Public Overridable Function fillerId(___fillerId As String) As Builder
 				Me.___fillerId = ___fillerId
 				Return Me
 			End Function

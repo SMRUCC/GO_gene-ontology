@@ -28,13 +28,13 @@ Namespace org.geneontology.obographs.owlapi
 			End Get
 		End Property
 
-		Public Overridable Sub [set](ByVal iri As String, ByVal scope As org.geneontology.obographs.model.meta.SynonymPropertyValue.SCOPES)
+		Public Overridable Sub [set](iri As String, scope As org.geneontology.obographs.model.meta.SynonymPropertyValue.SCOPES)
 			iriToScopeMap(iri) = scope
 		End Sub
-		Public Overridable Function [get](ByVal iri As String) As org.geneontology.obographs.model.meta.SynonymPropertyValue.SCOPES
+		Public Overridable Function [get](iri As String) As org.geneontology.obographs.model.meta.SynonymPropertyValue.SCOPES
 			Return iriToScopeMap(iri)
 		End Function
-		Public Overridable Function contains(ByVal iri As String) As Boolean
+		Public Overridable Function contains(iri As String) As Boolean
 			Return iriToScopeMap.ContainsKey(iri)
 		End Function
 

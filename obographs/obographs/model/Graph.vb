@@ -31,7 +31,7 @@ Namespace org.geneontology.obographs.model
 	''' </summary>
 	Public Class Graph
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			id = builder.id
 			lbl = builder.lbl
 			meta = builder.meta
@@ -131,35 +131,35 @@ Namespace org.geneontology.obographs.model
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private ___logicalDefinitionAxioms As IList(Of org.geneontology.obographs.model.axiom.LogicalDefinitionAxiom)
 
-			Public Overridable Function id(ByVal ___id As String) As Builder
+			Public Overridable Function id(___id As String) As Builder
 				Me.___id = ___id
 				Return Me
 			End Function
 
-			Public Overridable Function lbl(ByVal ___lbl As String) As Builder
+			Public Overridable Function lbl(___lbl As String) As Builder
 				Me.___lbl = ___lbl
 				Return Me
 			End Function
 
-			Public Overridable Function meta(ByVal ___meta As Meta) As Builder
+			Public Overridable Function meta(___meta As Meta) As Builder
 				Me.___meta = ___meta
 				Return Me
 			End Function
 
 			' TODO: test for uniqueness
-			Public Overridable Function nodes(ByVal ___nodes As IList(Of Node)) As Builder
+			Public Overridable Function nodes(___nodes As IList(Of Node)) As Builder
 				Me.___nodes = ___nodes
 				Return Me
 			End Function
-			Public Overridable Function edges(ByVal ___edges As IList(Of Edge)) As Builder
+			Public Overridable Function edges(___edges As IList(Of Edge)) As Builder
 				Me.___edges = ___edges
 				Return Me
 			End Function
-			Public Overridable Function equivalentNodesSet(ByVal equivalentNodesSets As IList(Of org.geneontology.obographs.model.axiom.EquivalentNodesSet)) As Builder
+			Public Overridable Function equivalentNodesSet(equivalentNodesSets As IList(Of org.geneontology.obographs.model.axiom.EquivalentNodesSet)) As Builder
 				Me.equivalentNodesSets = equivalentNodesSets
 				Return Me
 			End Function
-			Public Overridable Function logicalDefinitionAxioms(ByVal ___logicalDefinitionAxioms As IList(Of org.geneontology.obographs.model.axiom.LogicalDefinitionAxiom)) As Builder
+			Public Overridable Function logicalDefinitionAxioms(___logicalDefinitionAxioms As IList(Of org.geneontology.obographs.model.axiom.LogicalDefinitionAxiom)) As Builder
 				Me.___logicalDefinitionAxioms = ___logicalDefinitionAxioms
 				Return Me
 			End Function

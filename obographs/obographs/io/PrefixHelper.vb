@@ -46,7 +46,7 @@ Namespace org.geneontology.obographs.io
 		''' Create a new IOHelper with or without the default prefixes.
 		''' </summary>
 		''' <param name="defaults"> false if defaults should not be used </param>
-		Public Sub New(ByVal defaults As Boolean)
+		Public Sub New(defaults As Boolean)
 			Try
 				If defaults Then
 					Context = DefaultContext
@@ -63,7 +63,7 @@ Namespace org.geneontology.obographs.io
 		''' Create a new IOHelper with the specified prefixes.
 		''' </summary>
 		''' <param name="map"> the prefixes to use </param>
-		Public Sub New(ByVal map As IDictionary(Of String, Object))
+		Public Sub New(map As IDictionary(Of String, Object))
 			Context = map
 		End Sub
 
@@ -71,7 +71,7 @@ Namespace org.geneontology.obographs.io
 		''' Create a new IOHelper with prefixes from a file path.
 		''' </summary>
 		''' <param name="path"> to a JSON-LD file with a @context </param>
-		Public Sub New(ByVal path As String)
+		Public Sub New(path As String)
 			Try
 				Dim jsonString As String = org.apache.commons.io.FileUtils.readFileToString(New File(path))
 				Context = jsonString
@@ -85,7 +85,7 @@ Namespace org.geneontology.obographs.io
 		''' Create a new IOHelper with prefixes from a file.
 		''' </summary>
 		''' <param name="file"> a JSON-LD file with a @context </param>
-		Public Sub New(ByVal file As java.io.File)
+		Public Sub New(file As java.io.File)
 			Try
 				Dim jsonString As String = org.apache.commons.io.FileUtils.readFileToString(file)
 				Context = jsonString
@@ -101,7 +101,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="ontologyFile"> the </param>
 		''' <returns> the guessed catalog File; may not exist! </returns>
-		Public Overridable Function guessCatalogFile(ByVal ontologyFile As java.io.File) As java.io.File
+		Public Overridable Function guessCatalogFile(ontologyFile As java.io.File) As java.io.File
 			Dim path As String = ontologyFile.Parent
 			Dim catalogPath As String = "catalog-v001.xml"
 			If path IsNot Nothing Then catalogPath = path & "/catalog-v001.xml"
@@ -118,7 +118,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="term"> the term to convert to an IRI </param>
 		''' <returns> the new IRI </returns>
-		Public Overridable Function createIRI(ByVal term As String) As org.semanticweb.owlapi.model.IRI
+		Public Overridable Function createIRI(term As String) As org.semanticweb.owlapi.model.IRI
 			If term Is Nothing Then Return Nothing
 
 			Try
@@ -150,7 +150,7 @@ Namespace org.geneontology.obographs.io
 		''' <param name="jsonString"> the JSON-LD string </param>
 		''' <returns> a map from prefix name strings to prefix IRI strings </returns>
 		''' <exception cref="IOException"> on any problem </exception>
-		Public Shared Function parseContext(ByVal jsonString As String) As com.github.jsonldjava.core.Context
+		Public Shared Function parseContext(jsonString As String) As com.github.jsonldjava.core.Context
 			Try
 				Dim jsonObject As Object = com.github.jsonldjava.utils.JsonUtils.fromString(jsonString)
 				If Not(TypeOf jsonObject Is IDictionary) Then Return Nothing
@@ -186,7 +186,7 @@ Namespace org.geneontology.obographs.io
 			Get
 				Return Me.context.clone()
 			End Get
-			Set(ByVal context As com.github.jsonldjava.core.Context)
+			Set(context As com.github.jsonldjava.core.Context)
 		End Property
 
 		''' <summary>
@@ -208,7 +208,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="jsonString"> the new JSON-LD context as a JSON string </param>
 		Public Overridable Property Context As String
-			Set(ByVal jsonString As String)
+			Set(jsonString As String)
 				Try
 					Me.context = parseContext(jsonString)
 				Catch e As Exception
@@ -223,7 +223,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="map"> a map of strings for the new JSON-LD context </param>
 		Public Overridable Property Context As IDictionary(Of String, Object)
-			Set(ByVal map As IDictionary(Of String, Object))
+			Set(map As IDictionary(Of String, Object))
 				Try
 					Me.context = (New com.github.jsonldjava.core.Context).parse(map)
 				Catch e As Exception
@@ -238,7 +238,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="prefixes"> a map from prefix name strings to prefix IRI strings </param>
 		''' <returns> a new DefaultPrefixManager </returns>
-		Public Shared Function makePrefixManager(ByVal prefixes As IDictionary(Of String, String)) As org.semanticweb.owlapi.util.DefaultPrefixManager
+		Public Shared Function makePrefixManager(prefixes As IDictionary(Of String, String)) As org.semanticweb.owlapi.util.DefaultPrefixManager
 			Dim pm As New org.semanticweb.owlapi.util.DefaultPrefixManager
 			For Each entry As KeyValuePair(Of String, String) In prefixes
 				pm.setPrefix(entry.Key & ":", entry.Value)
@@ -261,7 +261,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="combined"> both prefix and target </param>
 		''' <exception cref="IllegalArgumentException"> on malformed input </exception>
-		Public Overridable Sub addPrefix(ByVal combined As String)
+		Public Overridable Sub addPrefix(combined As String)
 			Dim results As String() = combined.Split(":", 2)
 			If results.Length < 2 Then Throw New System.ArgumentException("Invalid prefix string: " & combined)
 			addPrefix(results(0), results(1))
@@ -274,7 +274,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="prefix"> the short prefix to add; should not include ":" </param>
 		''' <param name="target"> the IRI string that is the target of the prefix </param>
-		Public Overridable Sub addPrefix(ByVal prefix As String, ByVal target As String)
+		Public Overridable Sub addPrefix(prefix As String, target As String)
 			Try
 				context.put(prefix.Trim(), target.Trim())
 				context.remove("@base")
@@ -293,7 +293,7 @@ Namespace org.geneontology.obographs.io
 			Get
 				Return Me.context.getPrefixes(False)
 			End Get
-			Set(ByVal map As IDictionary(Of String, Object))
+			Set(map As IDictionary(Of String, Object))
 				Context = map
 			End Set
 		End Property
@@ -320,7 +320,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="path"> the path to write the context </param>
 		''' <exception cref="IOException"> on any error </exception>
-		Public Overridable Sub saveContext(ByVal path As String)
+		Public Overridable Sub saveContext(path As String)
 			saveContext(New File(path))
 		End Sub
 
@@ -329,7 +329,7 @@ Namespace org.geneontology.obographs.io
 		''' </summary>
 		''' <param name="file"> the file to write the context </param>
 		''' <exception cref="IOException"> on any error </exception>
-		Public Overridable Sub saveContext(ByVal file As java.io.File)
+		Public Overridable Sub saveContext(file As java.io.File)
 			Dim writer As New java.io.FileWriter(file)
 			writer.write(ContextString)
 			writer.close()

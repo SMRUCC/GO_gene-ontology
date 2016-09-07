@@ -7,7 +7,7 @@ Namespace org.geneontology.obographs.io
 
 	Public Class OgSchemaGenerator
 
-		Public Shared Function makeSchema(ByVal c As Type) As String
+		Public Shared Function makeSchema(c As Type) As String
 
 			Dim m As New com.fasterxml.jackson.databind.ObjectMapper
 			Dim visitor As New com.fasterxml.jackson.module.jsonSchema.factories.SchemaFactoryWrapper

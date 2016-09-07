@@ -15,7 +15,7 @@ Namespace org.geneontology.obographs.model.axiom
 	Public Class EquivalentNodesSet
 		Inherits AbstractAxiom
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			MyBase.New(builder)
 			representativeNodeId = builder.representativeNodeId
 			nodeIds = builder.nodeIds
@@ -54,12 +54,12 @@ Namespace org.geneontology.obographs.model.axiom
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private meta As org.geneontology.obographs.model.Meta
 
-			Public Overridable Function representativeNodeId(ByVal ___representativeNodeId As String) As Builder
+			Public Overridable Function representativeNodeId(___representativeNodeId As String) As Builder
 				Me.___representativeNodeId = ___representativeNodeId
 				Return Me
 			End Function
 
-			Public Overridable Function nodeIds(ByVal ___nodeIds As java.util.Set(Of String)) As Builder
+			Public Overridable Function nodeIds(___nodeIds As java.util.Set(Of String)) As Builder
 				Me.___nodeIds = ___nodeIds
 				Return Me
 			End Function

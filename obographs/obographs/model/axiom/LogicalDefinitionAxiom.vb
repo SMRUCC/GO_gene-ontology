@@ -16,7 +16,7 @@ Namespace org.geneontology.obographs.model.axiom
 	Public Class LogicalDefinitionAxiom
 		Inherits AbstractAxiom
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			MyBase.New(builder)
 			definedClassId = builder.definedClassId
 			genusIds = builder.genusIds
@@ -67,17 +67,17 @@ Namespace org.geneontology.obographs.model.axiom
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private meta As org.geneontology.obographs.model.Meta
 
-			Public Overridable Function definedClassId(ByVal ___definedClassId As String) As Builder
+			Public Overridable Function definedClassId(___definedClassId As String) As Builder
 				Me.___definedClassId = ___definedClassId
 				Return Me
 			End Function
 
-			Public Overridable Function genusIds(ByVal ___genusIds As IList(Of String)) As Builder
+			Public Overridable Function genusIds(___genusIds As IList(Of String)) As Builder
 				Me.___genusIds = ___genusIds
 				Return Me
 			End Function
 
-			Public Overridable Function restrictions(ByVal ___restrictions As IList(Of ExistentialRestrictionExpression)) As Builder
+			Public Overridable Function restrictions(___restrictions As IList(Of ExistentialRestrictionExpression)) As Builder
 				Me.___restrictions = ___restrictions
 				Return Me
 			End Function

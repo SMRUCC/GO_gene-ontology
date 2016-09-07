@@ -23,7 +23,7 @@ Namespace org.geneontology.obographs.model
 	''' </summary>
 	Public Class Meta
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			definition = builder.___definition
 			comments = builder.___comments
 			subsets = builder.___subsets
@@ -143,58 +143,58 @@ Namespace org.geneontology.obographs.model
 			Public ___version As String
 
 
-			Public Overridable Function definition(ByVal ___definition As org.geneontology.obographs.model.meta.DefinitionPropertyValue) As Builder
+			Public Overridable Function definition(___definition As org.geneontology.obographs.model.meta.DefinitionPropertyValue) As Builder
 				Me.___definition = ___definition
 				Return Me
 			End Function
-			Public Overridable Function definition(ByVal defval As String) As Builder
+			Public Overridable Function definition(defval As String) As Builder
 				Me.___definition = (New org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder).val(defval).build()
 				'((org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder) new DefinitionPropertyValue.Builder().val(defval)).build();
 				Return Me
 			End Function
-			Public Overridable Function subsets(ByVal ___subsets As IList(Of String)) As Builder
+			Public Overridable Function subsets(___subsets As IList(Of String)) As Builder
 				Me.___subsets = ___subsets
 				Return Me
 			End Function
-			Public Overridable Function subsets(ByVal ___subsets As String()) As Builder
+			Public Overridable Function subsets(___subsets As String()) As Builder
 				Me.___subsets = java.util.Arrays.asList(___subsets)
 				Return Me
 			End Function
-			Public Overridable Function addSubset(ByVal subset As String) As Builder
+			Public Overridable Function addSubset(subset As String) As Builder
 				If Me.___subsets Is Nothing Then Me.subsets(New List(Of String))
 				Me.___subsets.Add(subset)
 				Return Me
 			End Function
 
-			Public Overridable Function comments(ByVal ___comments As IList(Of String)) As Builder
+			Public Overridable Function comments(___comments As IList(Of String)) As Builder
 				Me.___comments = ___comments
 				Return Me
 			End Function
-			Public Overridable Function basicPropertyValues(ByVal ___basicPropertyValues As IList(Of org.geneontology.obographs.model.meta.BasicPropertyValue)) As Builder
+			Public Overridable Function basicPropertyValues(___basicPropertyValues As IList(Of org.geneontology.obographs.model.meta.BasicPropertyValue)) As Builder
 				Me.___basicPropertyValues = ___basicPropertyValues
 				Return Me
 			End Function
-			Public Overridable Function synonyms(ByVal ___synonyms As IList(Of org.geneontology.obographs.model.meta.SynonymPropertyValue)) As Builder
+			Public Overridable Function synonyms(___synonyms As IList(Of org.geneontology.obographs.model.meta.SynonymPropertyValue)) As Builder
 				Me.___synonyms = ___synonyms
 				Return Me
 			End Function
-			Public Overridable Function addSynonym(ByVal syn As org.geneontology.obographs.model.meta.SynonymPropertyValue) As Builder
+			Public Overridable Function addSynonym(syn As org.geneontology.obographs.model.meta.SynonymPropertyValue) As Builder
 				If Me.___synonyms Is Nothing Then Me.___synonyms = New List(Of )
 				Me.___synonyms.Add(syn)
 				Return Me
 			End Function
-			Public Overridable Function addXref(ByVal xref As org.geneontology.obographs.model.meta.XrefPropertyValue) As Builder
+			Public Overridable Function addXref(xref As org.geneontology.obographs.model.meta.XrefPropertyValue) As Builder
 				If Me.___xrefs Is Nothing Then Me.___xrefs = New List(Of )
 				Me.___xrefs.Add(xref)
 				Return Me
 			End Function
 
-			Public Overridable Function xrefs(ByVal ___xrefs As IList(Of org.geneontology.obographs.model.meta.XrefPropertyValue)) As Builder
+			Public Overridable Function xrefs(___xrefs As IList(Of org.geneontology.obographs.model.meta.XrefPropertyValue)) As Builder
 				Me.___xrefs = ___xrefs
 				Return Me
 			End Function
 
-			Public Overridable Function version(ByVal ___version As String) As Builder
+			Public Overridable Function version(___version As String) As Builder
 				Me.___version = ___version
 				Return Me
 			End Function

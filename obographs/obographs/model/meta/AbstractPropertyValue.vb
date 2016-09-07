@@ -10,7 +10,7 @@ Namespace org.geneontology.obographs.model.meta
 
 
 
-		Protected Friend Sub New(ByVal builder As Builder)
+		Protected Friend Sub New(builder As Builder)
 			pred = builder.pred
 			val = builder.val
 			meta = builder.meta
@@ -74,21 +74,21 @@ Namespace org.geneontology.obographs.model.meta
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private ___xrefs As IList(Of String)
 
-			Public Overridable Function pred(ByVal ___pred As String) As Builder
+			Public Overridable Function pred(___pred As String) As Builder
 				Me.___pred = ___pred
 				Return Me
 			End Function
 
-			Public Overridable Function val(ByVal ___val As String) As Builder
+			Public Overridable Function val(___val As String) As Builder
 				Me.___val = ___val
 				Return Me
 			End Function
-			Public Overridable Function xrefs(ByVal ___xrefs As IList(Of String)) As Builder
+			Public Overridable Function xrefs(___xrefs As IList(Of String)) As Builder
 				Me.___xrefs = ___xrefs
 				Return Me
 			End Function
 
-			Public Overridable Function meta(ByVal ___meta As org.geneontology.obographs.model.Meta) As Builder
+			Public Overridable Function meta(___meta As org.geneontology.obographs.model.Meta) As Builder
 				Me.___meta = ___meta
 				Return Me
 			End Function

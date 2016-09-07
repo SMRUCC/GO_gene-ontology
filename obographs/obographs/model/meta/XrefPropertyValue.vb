@@ -11,7 +11,7 @@ Namespace org.geneontology.obographs.model.meta
 
 		Private ReadOnly lbl As String
 
-		Private Sub New(ByVal builder As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
+		Private Sub New(builder As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
 			MyBase.New(builder)
 			lbl = builder.lbl
 		End Sub
@@ -32,15 +32,15 @@ Namespace org.geneontology.obographs.model.meta
 
 			Private ___lbl As String
 
-			Public Overrides Function val(ByVal ___val As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overrides Function val(___val As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				Return CType(MyBase.val(___val), org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
 			End Function
-			Public Overridable Function lbl(ByVal ___lbl As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overridable Function lbl(___lbl As String) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				Me.___lbl= ___lbl
 				Return Me
 			End Function
 
-			Public Overrides Function xrefs(ByVal ___xrefs As IList(Of String)) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
+			Public Overrides Function xrefs(___xrefs As IList(Of String)) As org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder
 				Return CType(MyBase.xrefs(___xrefs), org.geneontology.obographs.model.meta.DefinitionPropertyValue.Builder)
 			End Function
 

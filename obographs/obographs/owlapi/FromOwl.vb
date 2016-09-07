@@ -47,7 +47,7 @@ Namespace org.geneontology.obographs.owlapi
 		''' <param name="baseOntology"> </param>
 		''' <returns> GraphDocument where each graph is an ontology in the ontology closure </returns>
 		''' <seealso cref= <a href="https://github.com/geneontology/obographs/blob/master/README-owlmapping.md">OWL Mapping spec</a> </seealso>
-		Public Overridable Function generateGraphDocument(ByVal baseOntology As org.semanticweb.owlapi.model.OWLOntology) As org.geneontology.obographs.model.GraphDocument
+		Public Overridable Function generateGraphDocument(baseOntology As org.semanticweb.owlapi.model.OWLOntology) As org.geneontology.obographs.model.GraphDocument
 			Dim graphs As IList(Of org.geneontology.obographs.model.Graph) = New List(Of org.geneontology.obographs.model.Graph)
 			For Each ont As org.semanticweb.owlapi.model.OWLOntology In baseOntology.ImportsClosure
 				graphs.Add(generateGraph(ont))
@@ -57,7 +57,7 @@ Namespace org.geneontology.obographs.owlapi
 
 		''' <param name="ontology"> </param>
 		''' <returns> Graph generated from ontology </returns>
-		Public Overridable Function generateGraph(ByVal ontology As org.semanticweb.owlapi.model.OWLOntology) As org.geneontology.obographs.model.Graph
+		Public Overridable Function generateGraph(ontology As org.semanticweb.owlapi.model.OWLOntology) As org.geneontology.obographs.model.Graph
 
 			Dim synonymVocabulary As New SynonymVocabulary
 
@@ -242,11 +242,11 @@ Namespace org.geneontology.obographs.owlapi
 		End Function
 
 
-		Private Sub setNodeType(ByVal id As String, ByVal t As org.geneontology.obographs.model.Node.RDFTYPES, ByVal nodeTypeMap As IDictionary(Of String, org.geneontology.obographs.model.Node.RDFTYPES))
+		Private Sub setNodeType(id As String, t As org.geneontology.obographs.model.Node.RDFTYPES, nodeTypeMap As IDictionary(Of String, org.geneontology.obographs.model.Node.RDFTYPES))
 			nodeTypeMap(id) = t
 		End Sub
 
-		Private Function put(ByVal nodeMetaBuilderMap As IDictionary(Of String, org.geneontology.obographs.model.Meta.Builder), ByVal id As String) As org.geneontology.obographs.model.Meta.Builder
+		Private Function put(nodeMetaBuilderMap As IDictionary(Of String, org.geneontology.obographs.model.Meta.Builder), id As String) As org.geneontology.obographs.model.Meta.Builder
 			If Not nodeMetaBuilderMap.ContainsKey(id) Then nodeMetaBuilderMap(id) = New org.geneontology.obographs.model.Meta.Builder
 			Return nodeMetaBuilderMap(id)
 		End Function
@@ -256,10 +256,10 @@ Namespace org.geneontology.obographs.owlapi
 		''' </summary>
 		''' <param name="ax">
 		''' @return </param>
-		Private Function getAnnotations(ByVal ax As org.semanticweb.owlapi.model.OWLAxiom) As org.geneontology.obographs.model.Meta
+		Private Function getAnnotations(ax As org.semanticweb.owlapi.model.OWLAxiom) As org.geneontology.obographs.model.Meta
 			Return (getAnnotations(ax.GetCustomAttributes(True)))
 		End Function
-		Private Function getAnnotations(ByVal anns As java.util.Set(Of org.semanticweb.owlapi.model.OWLAnnotation)) As org.geneontology.obographs.model.Meta
+		Private Function getAnnotations(anns As java.util.Set(Of org.semanticweb.owlapi.model.OWLAnnotation)) As org.geneontology.obographs.model.Meta
 			Dim xrefs As IList(Of org.geneontology.obographs.model.meta.XrefPropertyValue) = New List(Of org.geneontology.obographs.model.meta.XrefPropertyValue)
 			Dim bpvs As IList(Of org.geneontology.obographs.model.meta.BasicPropertyValue) = New List(Of org.geneontology.obographs.model.meta.BasicPropertyValue)
 			Dim inSubsets As IList(Of String) = New List(Of String)
@@ -282,11 +282,11 @@ Namespace org.geneontology.obographs.owlapi
 
 
 
-		Private Function getEdge(ByVal subj As String, ByVal pred As String, ByVal obj As String) As org.geneontology.obographs.model.Edge
+		Private Function getEdge(subj As String, pred As String, obj As String) As org.geneontology.obographs.model.Edge
 			Return (New org.geneontology.obographs.model.Edge.Builder).sub(subj).pred(pred).obj(obj).build()
 		End Function
 
-		Private Function getRestriction(ByVal x As org.semanticweb.owlapi.model.OWLClassExpression) As org.geneontology.obographs.model.axiom.ExistentialRestrictionExpression
+		Private Function getRestriction(x As org.semanticweb.owlapi.model.OWLClassExpression) As org.geneontology.obographs.model.axiom.ExistentialRestrictionExpression
 			If TypeOf x Is org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom Then
 				Dim r As org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom = CType(x, org.semanticweb.owlapi.model.OWLObjectSomeValuesFrom)
 				Dim p As org.semanticweb.owlapi.model.OWLPropertyExpression = r.Property
@@ -300,33 +300,33 @@ Namespace org.geneontology.obographs.owlapi
 		'        prefixHelper
 		'    }
 
-		Private Function getPropertyId(ByVal p As org.semanticweb.owlapi.model.OWLObjectProperty) As String
+		Private Function getPropertyId(p As org.semanticweb.owlapi.model.OWLObjectProperty) As String
 			Return p.IRI.ToString()
 		End Function
-		Private Function getPropertyId(ByVal p As org.semanticweb.owlapi.model.OWLAnnotationProperty) As String
+		Private Function getPropertyId(p As org.semanticweb.owlapi.model.OWLAnnotationProperty) As String
 			Return p.IRI.ToString()
 		End Function
-		Private Function getClassId(ByVal c As org.semanticweb.owlapi.model.OWLClass) As String
+		Private Function getClassId(c As org.semanticweb.owlapi.model.OWLClass) As String
 			Return c.IRI.ToString()
 		End Function
 
-		Private Function getNodeId(ByVal s As org.semanticweb.owlapi.model.IRI) As String
+		Private Function getNodeId(s As org.semanticweb.owlapi.model.IRI) As String
 			Return s.ToString()
 		End Function
 
-		Public Overridable Function isDefinitionProperty(ByVal iri As org.semanticweb.owlapi.model.IRI) As Boolean
+		Public Overridable Function isDefinitionProperty(iri As org.semanticweb.owlapi.model.IRI) As Boolean
 			Return iri.ToString().Equals("http://purl.obolibrary.org/obo/IAO_0000115")
 		End Function
 
-		Public Overridable Function isHasXrefProperty(ByVal iri As org.semanticweb.owlapi.model.IRI) As Boolean
+		Public Overridable Function isHasXrefProperty(iri As org.semanticweb.owlapi.model.IRI) As Boolean
 			Return iri.ToString().Equals("http://www.geneontology.org/formats/oboInOwl#hasDbXref")
 		End Function
 
-		Public Overridable Function isInSubsetProperty(ByVal iri As org.semanticweb.owlapi.model.IRI) As Boolean
+		Public Overridable Function isInSubsetProperty(iri As org.semanticweb.owlapi.model.IRI) As Boolean
 			Return iri.ToString().Equals("http://www.geneontology.org/formats/oboInOwl#inSubset")
 		End Function
 
-		Public Overridable Function isHasSynonymTypeProperty(ByVal iri As org.semanticweb.owlapi.model.IRI) As Boolean
+		Public Overridable Function isHasSynonymTypeProperty(iri As org.semanticweb.owlapi.model.IRI) As Boolean
 			Return iri.ToString().Equals("http://www.geneontology.org/formats/oboInOwl#hasSynonymType")
 		End Function
 	End Class

@@ -27,7 +27,7 @@ Namespace org.geneontology.obographs.model
 			[PROPERTY]
 		End Enum
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			id = builder.id
 			label = builder.label
 			meta = builder.meta
@@ -85,22 +85,22 @@ Namespace org.geneontology.obographs.model
 'JAVA TO VB CONVERTER TODO TASK: Most Java annotations will not have direct .NET equivalent attributes:
 			Private ___type As RDFTYPES
 
-			Public Overridable Function id(ByVal ___id As String) As Builder
+			Public Overridable Function id(___id As String) As Builder
 				Me.___id = ___id
 				Return Me
 			End Function
 
-			Public Overridable Function label(ByVal ___label As String) As Builder
+			Public Overridable Function label(___label As String) As Builder
 				Me.___label = ___label
 				Return Me
 			End Function
 
-			Public Overridable Function meta(ByVal ___meta As Meta) As Builder
+			Public Overridable Function meta(___meta As Meta) As Builder
 				Me.___meta = ___meta
 				Return Me
 			End Function
 
-			Public Overridable Function type(ByVal ___type As RDFTYPES) As Builder
+			Public Overridable Function type(___type As RDFTYPES) As Builder
 				Me.___type = ___type
 				Return Me
 			End Function

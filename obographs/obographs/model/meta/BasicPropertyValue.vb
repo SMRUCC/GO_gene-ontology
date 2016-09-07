@@ -15,7 +15,7 @@ Namespace org.geneontology.obographs.model.meta
 		Inherits AbstractPropertyValue
 		Implements PropertyValue
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			MyBase.New(builder)
 		End Sub
 
@@ -23,13 +23,13 @@ Namespace org.geneontology.obographs.model.meta
 		Public Class Builder
 			Inherits AbstractPropertyValue.Builder
 
-			Public Overridable Function pred(ByVal ___pred As String) As Builder
+			Public Overridable Function pred(___pred As String) As Builder
 				Return CType(MyBase.pred(___pred), Builder)
 			End Function
-			Public Overridable Function val(ByVal ___val As String) As Builder
+			Public Overridable Function val(___val As String) As Builder
 				Return CType(MyBase.val(___val), Builder)
 			End Function
-			Public Overridable Function xrefs(ByVal ___xrefs As IList(Of String)) As Builder
+			Public Overridable Function xrefs(___xrefs As IList(Of String)) As Builder
 				Return CType(MyBase.xrefs(___xrefs), Builder)
 			End Function
 

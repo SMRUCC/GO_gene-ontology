@@ -18,7 +18,7 @@ Namespace org.geneontology.obographs.model
     ''' </summary>
     Public Class GraphDocument
 
-		Private Sub New(ByVal builder As Builder)
+		Private Sub New(builder As Builder)
 			meta = builder.meta
 			graphs = builder.graphs
 			context = builder.context
@@ -69,15 +69,15 @@ Namespace org.geneontology.obographs.model
 
 
 
-			Public Overridable Function meta(ByVal ___meta As Meta) As Builder
+			Public Overridable Function meta(___meta As Meta) As Builder
 				Me.___meta = ___meta
 				Return Me
 			End Function
-			Public Overridable Function graphs(ByVal ___graphs As IList(Of Graph)) As Builder
+			Public Overridable Function graphs(___graphs As IList(Of Graph)) As Builder
 				Me.___graphs = ___graphs
 				Return Me
 			End Function
-			Public Overridable Function context(ByVal ___context As Object) As Builder
+			Public Overridable Function context(___context As Object) As Builder
 				Me.___context = ___context
 				Return Me
 			End Function
