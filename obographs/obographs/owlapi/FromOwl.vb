@@ -2,29 +2,36 @@ Imports System.Collections.Generic
 
 Namespace org.geneontology.obographs.owlapi
 
+    ' Mapping OGs to OWL and back
+    ' 
+    ' Currently only one direction implemented
+    ' 
+    ' <br/>
+    ' 
+    ' See <a href="https://github.com/geneontology/obographs/blob/master/README-owlmapping.md">Spec</a>
+    ' 
+    ' @author cjm
 
 
-
-
-	''' <summary>
-	''' Implements OWL to OG translation
-	''' ===
-	''' 
-	''' See <a href="https://github.com/geneontology/obographs/blob/master/README-owlmapping.md">OWL Mapping spec</a>
-	''' 
-	''' <br/>
-	''' Status: _currently incomplete_
-	''' <br/>
-	''' </summary>
-	''' <seealso cref= "[SPEC](https://github.com/geneontology/obographs/blob/master/README-owlmapping.md)"
-	''' 
-	''' TODO:
-	'''  * Generate Meta objects
-	'''  * Synonyms
-	''' 
-	''' @author cjm
-	'''  </seealso>
-	Public Class FromOwl
+    ''' <summary>
+    ''' Implements OWL to OG translation
+    ''' ===
+    ''' 
+    ''' See <a href="https://github.com/geneontology/obographs/blob/master/README-owlmapping.md">OWL Mapping spec</a>
+    ''' 
+    ''' <br/>
+    ''' Status: _currently incomplete_
+    ''' <br/>
+    ''' </summary>
+    ''' <seealso cref= "[SPEC](https://github.com/geneontology/obographs/blob/master/README-owlmapping.md)"
+    ''' 
+    ''' TODO:
+    '''  * Generate Meta objects
+    '''  * Synonyms
+    ''' 
+    ''' @author cjm
+    '''  </seealso>
+    Public Class FromOwl
 
 		Public Const SUBCLASS_OF As String = "is_a"
 

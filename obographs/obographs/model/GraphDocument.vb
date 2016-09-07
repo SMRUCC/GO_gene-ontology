@@ -2,15 +2,21 @@ Imports System.Collections.Generic
 
 Namespace org.geneontology.obographs.model
 
+    ' Basic Obo Graph Model
+    ' 
+    ' Corresponds to the subset of OWL consisting of SubClassOf axioms between named classes
+    ' and either named classes or simple existential restrictions
+    ' 
+    ' @author cjm
+    ' 
 
-
-	''' <summary>
-	''' Holds a collection of graphs, plus document-level metadata
-	''' 
-	''' @author cjm
-	''' 
-	''' </summary>
-	Public Class GraphDocument
+    ''' <summary>
+    ''' Holds a collection of graphs, plus document-level metadata
+    ''' 
+    ''' @author cjm
+    ''' 
+    ''' </summary>
+    Public Class GraphDocument
 
 		Private Sub New(ByVal builder As Builder)
 			meta = builder.meta
