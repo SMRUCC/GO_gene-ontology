@@ -44,7 +44,7 @@ Namespace OBO
             Dim bufs As List(Of String) = New List(Of String)
             Dim schema = LoadClassSchema(Of Term)()
             Dim LQuery = From x As Term
-                     In Terms
+                         In Terms
                          Select x.ToLines(schema)
 
             Call bufs.AddRange(header.ToLines)
@@ -59,7 +59,28 @@ Namespace OBO
             Return bufs.SaveTo(path, Encodings.ASCII.GetEncodings)
         End Function
 
+        ''' <summary>
+        ''' 对于小文件可以使用这个方法来读取
+        ''' </summary>
+        ''' <param name="path"></param>
+        ''' <returns></returns>
         Public Shared Function LoadDocument(path As String) As AnnotationFile
+            Return New AnnotationFile With {
+                .header = ParseHeader(path$),
+                .Terms = Open(path).ToArray
+            }
+        End Function
+
+        Public Shared Function ParseHeader(path$) As header
+
+        End Function
+
+        ''' <summary>
+        ''' 使用迭代器来读取大型的GO OBO文件
+        ''' </summary>
+        ''' <param name="path$"></param>
+        ''' <returns></returns>
+        Public Shared Iterator Function Open(path$) As IEnumerable(Of Term)
 
         End Function
     End Class
