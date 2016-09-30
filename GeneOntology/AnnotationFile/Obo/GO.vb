@@ -35,7 +35,7 @@ Namespace OBO
     ''' go.obo/go-basic.obo(Go注释功能定义文件)
     ''' </summary>
     ''' <remarks></remarks>
-    Public Class AnnotationFile
+    Public Class GO_OBO
 
         Public Property header As header
         Public Property Terms As Term()
@@ -64,15 +64,29 @@ Namespace OBO
         ''' </summary>
         ''' <param name="path"></param>
         ''' <returns></returns>
-        Public Shared Function LoadDocument(path As String) As AnnotationFile
-            Return New AnnotationFile With {
-                .header = ParseHeader(path$),
-                .Terms = Open(path).ToArray
-            }
+        Public Shared Function LoadDocument(path As String) As GO_OBO
+            Using obo As New OBOFile(path$)
+                Return New GO_OBO With {
+                    .header = obo.header,
+                    .Terms = ReadTerms(obo).ToArray
+                }
+            End Using
         End Function
 
         Public Shared Function ParseHeader(path$) As header
+            Using obo As New OBOFile(path$)
+                Return obo.header
+            End Using
+        End Function
 
+        Public Shared Iterator Function ReadTerms(obo As OBOFile) As IEnumerable(Of Term)
+            Dim schema = LoadClassSchema(Of Term)()
+
+            For Each x As RawTerm In obo.GetDatas
+                If x.Type = Term.Term Then
+                    Yield schema.LoadData(Of Term)(x.GetData)
+                End If
+            Next
         End Function
 
         ''' <summary>
@@ -80,8 +94,8 @@ Namespace OBO
         ''' </summary>
         ''' <param name="path$"></param>
         ''' <returns></returns>
-        Public Shared Iterator Function Open(path$) As IEnumerable(Of Term)
-
+        Public Shared Function Open(path$) As IEnumerable(Of Term)
+            Return ReadTerms(New OBOFile(path))
         End Function
     End Class
 End Namespace
