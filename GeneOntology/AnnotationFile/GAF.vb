@@ -28,7 +28,7 @@
 Imports System.Reflection
 Imports System.Text
 Imports Microsoft.VisualBasic
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.SchemaMaps
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text
@@ -409,7 +409,7 @@ Public Class GAF
             Select strLine
 
         Dim schemaBufs =
-            From x As BindProperty(Of SMRUCC.genomics.foundation.OBO_Foundry.Field)
+            From x As SchemaMaps.BindProperty(Of Field)
             In LoadClassSchema(Of GAF)().Values
             Select x
             Order By x.Field.Index Ascending
