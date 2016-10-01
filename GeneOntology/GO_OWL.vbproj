@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAG\Builder.vb" />
+    <Compile Include="DAG\Graph.vb" />
     <Compile Include="DAG\Relationship.vb" />
     <Compile Include="DAG\Term.vb" />
     <Compile Include="DAG\Fields.vb" />
