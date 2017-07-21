@@ -1,9 +1,10 @@
-﻿#Region "Microsoft.VisualBasic::9e0051a349053f302b725d163a69d88f, ..\GCModeller\data\GO_gene-ontology\AnnotationFile\GAF.vb"
+﻿#Region "Microsoft.VisualBasic::4919fcdd7b690812110a346f3f0083d4, ..\GCModeller\data\GO_gene-ontology\GeneOntology\Files\GAF.vb"
 
 ' Author:
 ' 
 '       asuka (amethyst.asuka@gcmodeller.org)
 '       xieguigang (xie.guigang@live.com)
+'       xie (genetics@smrucc.org)
 ' 
 ' Copyright (c) 2016 GPL3 Licensed
 ' 
@@ -414,7 +415,7 @@ Public Class GAF
             Select x
             Order By x.Field.Index Ascending
 
-        Dim ClassSchema = schemaBufs.ToArray(Function(x) x.Property)
+        Dim ClassSchema = schemaBufs.ToArray(Function(x) DirectCast(x.member, PropertyInfo))
         Dim LQuery As GAF() = LinqAPI.Exec(Of GAF) <=
             From strLine As String
             In strLines

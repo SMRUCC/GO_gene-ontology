@@ -47,7 +47,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>G:\GCModeller\GCModeller\bin</OutputPath>
+    <OutputPath>bin\Debug</OutputPath>
     <DocumentationFile>SMRUCC.genomics.Data.GO_OWL.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
@@ -145,9 +145,21 @@
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2|AnyCPU'">
+    <OutputPath>bin\Release2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2|x64'">
+    <OutputPath>bin\x64\Release2\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2|x86'">
+    <OutputPath>bin\x86\Release2\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\System.ValueTuple.4.4.0-preview1-25305-02\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -166,6 +178,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PseAA.vb" />
+    <Compile Include="GoBriefTable.vb" />
+    <Compile Include="GoStat.vb" />
     <Compile Include="DAG\Builder.vb" />
     <Compile Include="DAG\Graph.vb" />
     <Compile Include="DAG\Relationship.vb" />
@@ -183,50 +198,6 @@
     <Compile Include="Files\GAF.vb" />
     <Compile Include="OntologyRelations.vb" />
     <Compile Include="Ontologies.vb" />
-    <Compile Include="MySQL\Tables\association.vb" />
-    <Compile Include="MySQL\Tables\association_isoform.vb" />
-    <Compile Include="MySQL\Tables\association_property.vb" />
-    <Compile Include="MySQL\Tables\association_qualifier.vb" />
-    <Compile Include="MySQL\Tables\association_species_qualifier.vb" />
-    <Compile Include="MySQL\Tables\assoc_rel.vb" />
-    <Compile Include="MySQL\Tables\db.vb" />
-    <Compile Include="MySQL\Tables\dbxref.vb" />
-    <Compile Include="MySQL\Tables\evidence.vb" />
-    <Compile Include="MySQL\Tables\evidence_dbxref.vb" />
-    <Compile Include="MySQL\Tables\gene_product.vb" />
-    <Compile Include="MySQL\Tables\gene_product_ancestor.vb" />
-    <Compile Include="MySQL\Tables\gene_product_count.vb" />
-    <Compile Include="MySQL\Tables\gene_product_dbxref.vb" />
-    <Compile Include="MySQL\Tables\gene_product_homology.vb" />
-    <Compile Include="MySQL\Tables\gene_product_homolset.vb" />
-    <Compile Include="MySQL\Tables\gene_product_phylotree.vb" />
-    <Compile Include="MySQL\Tables\gene_product_property.vb" />
-    <Compile Include="MySQL\Tables\gene_product_seq.vb" />
-    <Compile Include="MySQL\Tables\gene_product_subset.vb" />
-    <Compile Include="MySQL\Tables\gene_product_synonym.vb" />
-    <Compile Include="MySQL\Tables\graph_path.vb" />
-    <Compile Include="MySQL\Tables\graph_path2term.vb" />
-    <Compile Include="MySQL\Tables\homolset.vb" />
-    <Compile Include="MySQL\Tables\instance_data.vb" />
-    <Compile Include="MySQL\Tables\intersection_of.vb" />
-    <Compile Include="MySQL\Tables\phylotree.vb" />
-    <Compile Include="MySQL\Tables\phylotree_property.vb" />
-    <Compile Include="MySQL\Tables\relation_composition.vb" />
-    <Compile Include="MySQL\Tables\relation_properties.vb" />
-    <Compile Include="MySQL\Tables\seq.vb" />
-    <Compile Include="MySQL\Tables\seq_dbxref.vb" />
-    <Compile Include="MySQL\Tables\seq_property.vb" />
-    <Compile Include="MySQL\Tables\source_audit.vb" />
-    <Compile Include="MySQL\Tables\species.vb" />
-    <Compile Include="MySQL\Tables\term.vb" />
-    <Compile Include="MySQL\Tables\term2term.vb" />
-    <Compile Include="MySQL\Tables\term2term_metadata.vb" />
-    <Compile Include="MySQL\Tables\term_audit.vb" />
-    <Compile Include="MySQL\Tables\term_dbxref.vb" />
-    <Compile Include="MySQL\Tables\term_definition.vb" />
-    <Compile Include="MySQL\Tables\term_property.vb" />
-    <Compile Include="MySQL\Tables\term_subset.vb" />
-    <Compile Include="MySQL\Tables\term_synonym.vb" />
     <Compile Include="OWL\Ontology.vb" />
     <Compile Include="Files\Obo\Term.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -264,17 +235,22 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\runtime\visualbasic.DBI\LibMySQL\LibMySQL.vbproj">
-      <Project>{2c34a044-1bde-44e8-a86e-e9971c87da21}</Project>
-      <Name>LibMySQL</Name>
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Data\DataFrame\+VB_DataFrame.vbproj">
+      <Project>{7283C179-F852-4EAD-8D8F-B82EF2CBD7DB}</Project>
+      <Name>+VB_DataFrame</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\runtime\visualbasic_App\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Data_science\Mathematical\Math\math-core.vbproj">
+      <Project>{e3367b88-5d0c-495a-8273-331656d4b5aa}</Project>
+      <Name>Microsoft.VisualBasic.Mathematical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Architecture.Framework\+Microsoft.VisualBasic.Architecture.Framework.vbproj">
       <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
       <Name>+Microsoft.VisualBasic.Architecture.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\runtime\visualbasic_App\mime\RDF\RDF.vbproj">
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\application%25rdf+xml\RDF.vbproj">
       <Project>{20912ff3-ce68-497c-854d-21e372f11d7c}</Project>
       <Name>RDF</Name>
     </ProjectReference>
