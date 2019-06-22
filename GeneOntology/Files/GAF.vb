@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::4919fcdd7b690812110a346f3f0083d4, ..\GCModeller\data\GO_gene-ontology\GeneOntology\Files\GAF.vb"
+﻿#Region "Microsoft.VisualBasic::53078d4eb29c8d75017c6eae0e467d06, data\GO_gene-ontology\GeneOntology\Files\GAF.vb"
 
 ' Author:
 ' 
 '       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
 '       xie (genetics@smrucc.org)
+'       xieguigang (xie.guigang@live.com)
 ' 
-' Copyright (c) 2016 GPL3 Licensed
+' Copyright (c) 2018 GPL3 Licensed
 ' 
 ' 
 ' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
 ' 
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -24,16 +25,33 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
+
+' /********************************************************************************/
+
+' Summaries:
+
+' Class GAF
+' 
+'     Properties: [Date], AnnotationExtension, Aspect, AssignedBy, DB
+'                 DBObjectID, DBObjectName, DBObjectSymbol, DBObjectSynonym, DBObjectType
+'                 DBReference, EvidenceCode, GeneProductFormID, GOID, Qualifier
+'                 Taxon, WithOrFrom
+' 
+'     Function: GenerateLine, (+2 Overloads) Load, Save, ToString
+' 
+' /********************************************************************************/
+
 #End Region
 
 Imports System.Reflection
 Imports System.Text
-Imports Microsoft.VisualBasic
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.foundation.OBO_Foundry
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Reflection
 
 ''' <summary>
 ''' GO Annotation File (GAF) Format 2.0
@@ -401,25 +419,27 @@ Public Class GAF
     End Function
 
     Public Shared Function Load(path As String) As GAF()
-        Dim strLines As String() =
-            LinqAPI.Exec(Of String) <=
+        Dim strLines As String() = LinqAPI.Exec(Of String) _
  _
-            From strLine As String
-            In IO.File.ReadLines(path)
-            Where strLine.First <> "!"c
-            Select strLine
+            () <= From strLine As String
+                  In path.ReadAllLines
+                  Where strLine.First <> "!"c
+                  Select strLine
 
         Dim schemaBufs =
             From x As SchemaMaps.BindProperty(Of Field)
             In LoadClassSchema(Of GAF)().Values
             Select x
-            Order By x.Field.Index Ascending
+            Order By x.field.index Ascending
 
-        Dim ClassSchema = schemaBufs.ToArray(Function(x) DirectCast(x.member, PropertyInfo))
-        Dim LQuery As GAF() = LinqAPI.Exec(Of GAF) <=
-            From strLine As String
-            In strLines
-            Select Load(strLine, ClassSchema)
+        Dim classSchema = schemaBufs _
+            .Select(Function(x) DirectCast(x.member, PropertyInfo)) _
+            .ToArray
+        Dim LQuery As GAF() = LinqAPI.Exec(Of GAF) _
+ _
+            () <= From strLine As String
+                  In strLines
+                  Select Load(strLine, classSchema)
 
         Return LQuery
     End Function

@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::f4b84049e8c82714d855023b045d07ab, ..\GCModeller\data\GO_gene-ontology\GeneOntology\Files\Obo\base.vb"
+﻿#Region "Microsoft.VisualBasic::57e3b023733459b31d1aabed40520dde, data\GO_gene-ontology\GeneOntology\Files\Obo\base.vb"
 
 ' Author:
 ' 
 '       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
 '       xie (genetics@smrucc.org)
+'       xieguigang (xie.guigang@live.com)
 ' 
-' Copyright (c) 2016 GPL3 Licensed
+' Copyright (c) 2018 GPL3 Licensed
 ' 
 ' 
 ' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
 ' 
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -24,10 +25,23 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
+
+' /********************************************************************************/
+
+' Summaries:
+
+'     Class base
+' 
+'         Properties: [namespace], id, name
+' 
+' 
+' /********************************************************************************/
+
 #End Region
 
 Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
-Imports SMRUCC.genomics.foundation.OBO_Foundry
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Reflection
 
 Namespace OBO
 

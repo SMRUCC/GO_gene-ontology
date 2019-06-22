@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::2b7597ba523f6aaa2721b6f81391e048, ..\GCModeller\data\GO_gene-ontology\GeneOntology\DAG\Builder.vb"
+﻿#Region "Microsoft.VisualBasic::4474bcdac0d95ff2138daa4416aec95a, data\GO_gene-ontology\GeneOntology\DAG\Builder.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xieguigang (xie.guigang@live.com)
     '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
     ' 
-    ' Copyright (c) 2016 GPL3 Licensed
+    ' Copyright (c) 2018 GPL3 Licensed
     ' 
     ' 
     ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
     ' 
     ' This program is free software: you can redistribute it and/or modify
     ' it under the terms of the GNU General Public License as published by
@@ -24,9 +25,23 @@
     ' You should have received a copy of the GNU General Public License
     ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+    '     Module Builder
+    ' 
+    '         Function: (+2 Overloads) BuildTree, ConstructNode, xrefParser
+    ' 
+    ' 
+    ' /********************************************************************************/
+
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Data.GeneOntology.OBO
@@ -65,16 +80,29 @@ Namespace DAG
         ''' <param name="term"></param>
         ''' <returns></returns>
         <Extension> Public Function ConstructNode(term As Term) As TermNode
-            Dim is_a = term.is_a.ToArray(Function(s) New is_a(s$))
-            Dim rels = term.relationship.ToArray(Function(s) New Relationship(s$))
-            Dim synonym = term.synonym.ToArray(Function(s) New synonym(s$))
+            Dim is_a = term.is_a _
+                .SafeQuery _
+                .Select(Function(s) New is_a(s$)) _
+                .ToArray
+            Dim rels = term.relationship _
+                .SafeQuery _
+                .Select(Function(s) New Relationship(s$)) _
+                .ToArray
+            Dim synonym = term.synonym _
+                .SafeQuery _
+                .Select(Function(s) New synonym(s$)) _
+                .ToArray
+            Dim xrefValues = term.xref _
+                .SafeQuery _
+                .Select(AddressOf xrefParser) _
+                .ToArray
 
             Return New TermNode With {
                 .id = term.id,
                 .is_a = is_a,
                 .relationship = rels,
                 .synonym = synonym,
-                .xref = term.xref.ToArray(AddressOf xrefParser),
+                .xref = xrefValues,
                 .namespace = term.namespace,
                 .GO_term = term
             }

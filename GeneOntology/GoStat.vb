@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::b6fd731e6fcb21dcc42b74efb1d16a9d, ..\GCModeller\data\GO_gene-ontology\GeneOntology\GoStat.vb"
+﻿#Region "Microsoft.VisualBasic::04561289c062cf5c7ec81fcbc5624f08, data\GO_gene-ontology\GeneOntology\GoStat.vb"
 
 ' Author:
 ' 
 '       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
 '       xie (genetics@smrucc.org)
+'       xieguigang (xie.guigang@live.com)
 ' 
-' Copyright (c) 2016 GPL3 Licensed
+' Copyright (c) 2018 GPL3 Licensed
 ' 
 ' 
 ' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
 ' 
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -24,10 +25,26 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
+
+' /********************************************************************************/
+
+' Summaries:
+
+' Module GoStat
+' 
+'     Properties: OntologyNamespaces
+' 
+'     Function: __t, (+2 Overloads) CountStat, EnumerateGOTerms, LevelGOTerms, QuantileCuts
+'               SaveCountValue
+' 
+' /********************************************************************************/
+
 #End Region
 
 Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Language
@@ -36,7 +53,7 @@ Imports Microsoft.VisualBasic.Math.Quantile
 Imports Microsoft.VisualBasic.Text
 Imports SMRUCC.genomics.Data.GeneOntology.DAG
 Imports SMRUCC.genomics.Data.GeneOntology.OBO
-Imports SMRUCC.genomics.foundation.OBO_Foundry
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 
 ''' <summary>
 ''' Statics of the GO function catalog
@@ -111,7 +128,7 @@ Public Module GoStat
     Public Function CountStat(Of gene)(genes As IEnumerable(Of gene), getGO As Func(Of gene, String()), GO_terms As Dictionary(Of String, Term)) As Dictionary(Of String, NamedValue(Of Integer)())
         Return genes _
             .CountStat(Function(g)
-                           Return getGO(g).ToArray(Function(id) (id, 1))
+                           Return getGO(g).Select(Function(id) (id, 1)).ToArray
                        End Function, GO_terms)
     End Function
 
@@ -122,22 +139,26 @@ Public Module GoStat
     ''' 
     <Extension>
     Public Function CountStat(Of gene)(genes As IEnumerable(Of gene), getGO As Func(Of gene, (goID$, number%)()), GO_terms As Dictionary(Of String, Term)) As Dictionary(Of String, NamedValue(Of Integer)())
-        Dim out As Dictionary(Of String, Dictionary(Of NamedValue(Of int))) =
+        Dim out As Dictionary(Of String, Dictionary(Of NamedValue(Of VBInteger))) =
             Enums(Of Ontologies) _
             .ToDictionary(Function(o) o.Description,
-                          Function(null) New Dictionary(Of NamedValue(Of int)))
+                          Function(null) New Dictionary(Of NamedValue(Of VBInteger)))
 
         For Each g As gene In genes
-            For Each value As (goID$, Number As Integer) In getGO(g).Where(Function(x)
-                                                                               Return Not x.goID.StringEmpty AndAlso GO_terms.ContainsKey(x.goID)
-                                                                           End Function)
+            Dim goCounts = getGO(g) _
+                .Where(Function(x)
+                           Return Not x.goID.StringEmpty AndAlso GO_terms.ContainsKey(x.goID)
+                       End Function) _
+                .ToArray
+
+            For Each value As (goID$, Number As Integer) In goCounts
                 Dim goID As String = value.goID
                 Dim term As Term = GO_terms(goID)
                 Dim count = out(term.namespace)
 
                 If Not count.ContainsKey(goID) Then
                     Call count.Add(
-                        New NamedValue(Of int) With {
+                        New NamedValue(Of VBInteger) With {
                             .Name = goID,
                             .Description = term.name,
                             .Value = 0
@@ -148,11 +169,11 @@ Public Module GoStat
             Next
         Next
 
-        Return out.ToDictionary(
-            Function(x) x.Key,
-            Function(value) As NamedValue(Of Integer)()
-                Return __t(value.Value.Values)
-            End Function)
+        Return out _
+            .ToDictionary(Function(x) x.Key,
+                          Function(value) As NamedValue(Of Integer)()
+                              Return __t(value.Value.Values)
+                          End Function)
     End Function
 
     <Extension>
@@ -176,7 +197,7 @@ Public Module GoStat
         Return True
     End Function
 
-    Private Function __t(value As IEnumerable(Of NamedValue(Of int))) As NamedValue(Of Integer)()
+    Private Function __t(value As IEnumerable(Of NamedValue(Of VBInteger))) As NamedValue(Of Integer)()
         Dim array As New List(Of NamedValue(Of Integer))
 
         For Each x In value.Where(Function(c) c.Value.Value > 1).ToArray
@@ -220,4 +241,3 @@ Public Module GoStat
         Return GO_OBO.ReadTerms(obo)
     End Function
 End Module
-

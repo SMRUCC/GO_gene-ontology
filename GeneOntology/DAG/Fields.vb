@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::d15f8b29876a081ae1f5956172c3f121, ..\GCModeller\data\GO_gene-ontology\GeneOntology\DAG\Fields.vb"
+﻿#Region "Microsoft.VisualBasic::b8d78e7a3c55fc0ae0d1fd419294bd31, data\GO_gene-ontology\GeneOntology\DAG\Fields.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xieguigang (xie.guigang@live.com)
     '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
     ' 
-    ' Copyright (c) 2016 GPL3 Licensed
+    ' Copyright (c) 2018 GPL3 Licensed
     ' 
     ' 
     ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
     ' 
     ' This program is free software: you can redistribute it and/or modify
     ' it under the terms of the GNU General Public License as published by
@@ -23,6 +24,25 @@
     ' 
     ' You should have received a copy of the GNU General Public License
     ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+    '     Structure def
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    '         Function: ToString
+    ' 
+    '     Structure synonym
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    '         Function: ToString
+    ' 
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 
@@ -51,7 +71,7 @@ Namespace DAG
         End Sub
 
         Public Overrides Function ToString() As String
-            Dim refs As String = ref.ToArray(Function(x) $"{x.Name}:{x.Value}").JoinBy(", ")
+            Dim refs As String = ref.Select(Function(x) $"{x.Name}:{x.Value}").JoinBy(", ")
             Return $"def: ""{def}"" [{refs}]"
         End Function
     End Structure

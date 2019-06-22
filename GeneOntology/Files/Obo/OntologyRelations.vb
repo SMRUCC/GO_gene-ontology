@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::0715cd7600221c853b3484c447764288, ..\GCModeller\data\GO_gene-ontology\GeneOntology\Files\Obo\OntologyRelations.vb"
+﻿#Region "Microsoft.VisualBasic::170121b352a293888bcb4e102c41444b, data\GO_gene-ontology\GeneOntology\Files\Obo\OntologyRelations.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xieguigang (xie.guigang@live.com)
     '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
     ' 
-    ' Copyright (c) 2016 GPL3 Licensed
+    ' Copyright (c) 2018 GPL3 Licensed
     ' 
     ' 
     ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
     ' 
     ' This program is free software: you can redistribute it and/or modify
     ' it under the terms of the GNU General Public License as published by
@@ -23,6 +24,21 @@
     ' 
     ' You should have received a copy of the GNU General Public License
     ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+    '     Class OntologyRelations
+    ' 
+    '         Properties: is_a
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 
@@ -42,7 +58,7 @@ Namespace OBO
         Public Property is_a As NamedValue(Of String)()
 
         Sub New(term As Term)
-            is_a = term.is_a.ToArray(Function(s) s.GetTagValue(" ! ", trim:=True))
+            is_a = term.is_a.Select(Function(s) s.GetTagValue(" ! ", trim:=True)).ToArray
         End Sub
     End Class
 End Namespace

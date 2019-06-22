@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::fce96c29bbe1b06ec5443f58b70b314c, ..\GCModeller\data\GO_gene-ontology\GeneOntology\Files\xref2go\XrefId.vb"
+﻿#Region "Microsoft.VisualBasic::fce96c29bbe1b06ec5443f58b70b314c, data\GO_gene-ontology\GeneOntology\Files\xref2go\XrefId.vb"
 
     ' Author:
     ' 
     '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xieguigang (xie.guigang@live.com)
     '       xie (genetics@smrucc.org)
+    '       xieguigang (xie.guigang@live.com)
     ' 
-    ' Copyright (c) 2016 GPL3 Licensed
+    ' Copyright (c) 2018 GPL3 Licensed
     ' 
     ' 
     ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' 
     ' 
     ' This program is free software: you can redistribute it and/or modify
     ' it under the terms of the GNU General Public License as published by
@@ -23,6 +24,129 @@
     ' 
     ' You should have received a copy of the GNU General Public License
     ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+    '     Class XrefId
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Module XrefIdParser
+    ' 
+    '         Properties: XrefIdParsers
+    ' 
+    '         Function: Parse
+    ' 
+    '     Class cog
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class ec
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class egad
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class genprotec
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class hamap
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class interpro
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class kegg
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class metacyc
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class mips
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class multifun
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class pfam
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class pirsf
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class prints
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class prodom
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class prosite
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class reactome
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class rfam
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class rhea
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class smart
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class tigr
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class tigrfams
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class um_bbd_enzymeid
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class um_bbd_pathwayid
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class um_bbd_reactionid
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class uniprotkb_kw
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    '     Class uniprotkb_sl
+    ' 
+    '         Constructor: (+1 Overloads) Sub New
+    ' 
+    ' 
+    ' /********************************************************************************/
 
 #End Region
 

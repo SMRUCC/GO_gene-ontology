@@ -1,15 +1,16 @@
-﻿#Region "Microsoft.VisualBasic::ae215fb6336753f92ef26b736dc45acb, ..\GCModeller\data\GO_gene-ontology\GeneOntology\DAG\Graph.vb"
+﻿#Region "Microsoft.VisualBasic::1da7bc51b55add5a2de049cd074a3896, data\GO_gene-ontology\GeneOntology\DAG\Graph.vb"
 
 ' Author:
 ' 
 '       asuka (amethyst.asuka@gcmodeller.org)
-'       xieguigang (xie.guigang@live.com)
 '       xie (genetics@smrucc.org)
+'       xieguigang (xie.guigang@live.com)
 ' 
-' Copyright (c) 2016 GPL3 Licensed
+' Copyright (c) 2018 GPL3 Licensed
 ' 
 ' 
 ' GNU GENERAL PUBLIC LICENSE (GPL3)
+' 
 ' 
 ' This program is free software: you can redistribute it and/or modify
 ' it under the terms of the GNU General Public License as published by
@@ -24,13 +25,38 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
+
+' /********************************************************************************/
+
+' Summaries:
+
+'     Class Graph
+' 
+'         Properties: header
+' 
+'         Constructor: (+2 Overloads) Sub New
+'         Function: Family, ToString
+'         Structure InheritsChain
+' 
+'             Properties: [Namespace], Family, Top
+' 
+'             Constructor: (+1 Overloads) Sub New
+'             Function: Level, Strip, ToString
+' 
+' 
+' 
+' 
+' /********************************************************************************/
+
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports SMRUCC.genomics.Data.GeneOntology.OBO
-Imports SMRUCC.genomics.foundation.OBO_Foundry
+Imports SMRUCC.genomics.foundation.OBO_Foundry.IO.Models
 
 Namespace DAG
 
@@ -91,15 +117,22 @@ Namespace DAG
         ''' </summary>
         Const molecular_function$ = NameOf(molecular_function)
 
-        Public Function Family(id$) As IEnumerable(Of InheritsChain)
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="id$"><see cref="Term.id"/></param>
+        ''' <returns></returns>
+        Public Function Family(id As String) As IEnumerable(Of InheritsChain)
             Dim term As TermNode = __DAG(id)
 
-            If term.is_a.IsNullOrEmpty Then
-                Return {
-                    New InheritsChain With {
-                        .Route = New List(Of TermNode) From {term}
-                    }
+            If term Is Nothing Then
+                Return {}
+            ElseIf term.is_a.IsNullOrEmpty Then
+                Dim break As New InheritsChain With {
+                    .Route = New List(Of TermNode) From {term}
                 }
+
+                Return {break}
             Else
                 Dim routes As New List(Of InheritsChain)
 
