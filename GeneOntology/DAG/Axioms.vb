@@ -40,6 +40,7 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports SMRUCC.genomics.Data.GeneOntology.OBO
 
 ''' <summary>
@@ -59,6 +60,11 @@ Public Module Axioms
 
     End Function
 
+    ReadOnly regulates As Index(Of OntologyRelations) = {
+        OntologyRelations.negatively_regulates,
+        OntologyRelations.positively_regulates
+    }
+
     ''' <summary>
     ''' 计算出``A -> C``的关系，C是A和B的基础类型
     ''' </summary>
@@ -66,6 +72,10 @@ Public Module Axioms
     ''' <param name="[to]">B -> C</param>
     ''' <returns></returns>
     Public Function InferRule(from As OntologyRelations, [to] As OntologyRelations) As OntologyRelations
+        If from Like regulates AndAlso [to] = OntologyRelations.part_of Then
+            Return OntologyRelations.regulates
+        End If
+
         If [to] > from Then
             Return [to]
         Else
