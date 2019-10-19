@@ -24,7 +24,7 @@ Namespace OBO
 
         Public Shared Function Parse(dataLine As String) As Definition
             Dim info = dataLine.GetStackValue("""", """")
-            Dim evidences = dataLine.Match("\[.+?\]", RegexICSng)
+            Dim evidences = dataLine.Match("\[.+?\]", RegexICSng).GetStackValue("[", "]")
 
             Return New Definition With {
                 .definition = info,
