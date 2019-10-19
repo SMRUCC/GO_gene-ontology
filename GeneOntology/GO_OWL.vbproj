@@ -246,16 +246,16 @@
     <Compile Include="DAG\TermNode.vb" />
     <Compile Include="DAG\Fields.vb" />
     <Compile Include="Files\NCBI\gene2go.vb" />
-    <Compile Include="Files\Obo\base.vb" />
-    <Compile Include="Files\Obo\Instance.vb" />
-    <Compile Include="Files\Obo\Typedef.vb" />
+    <Compile Include="Files\Obo\File\base.vb" />
+    <Compile Include="Files\Obo\File\Instance.vb" />
+    <Compile Include="Files\Obo\File\Typedef.vb" />
     <Compile Include="Files\Obo\OntologyRelations.vb" />
     <Compile Include="Files\Obo\GO.vb" />
     <Compile Include="Files\GAF.vb" />
     <Compile Include="OntologyRelations.vb" />
     <Compile Include="Ontologies.vb" />
     <Compile Include="OWL\Ontology.vb" />
-    <Compile Include="Files\Obo\Term.vb" />
+    <Compile Include="Files\Obo\File\Term.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
