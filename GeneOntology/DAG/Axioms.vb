@@ -71,6 +71,9 @@ Public Module Axioms
     ''' <param name="from">A -> B</param>
     ''' <param name="[to]">B -> C</param>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' https://github.com/SMRUCC/GCModeller/blob/master/src/GCModeller/data/GO_gene-ontology/docs/Ontology/Ontology_Relations/README.md
+    ''' </remarks>
     Public Function InferRule(from As OntologyRelations, [to] As OntologyRelations) As OntologyRelations
         If from Like regulates AndAlso [to] = OntologyRelations.part_of Then
             Return OntologyRelations.regulates
