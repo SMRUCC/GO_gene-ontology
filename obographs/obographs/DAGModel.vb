@@ -46,7 +46,7 @@ Public Module DAGModel
             ' 边的连接是有方向的
             Call g.tryInsertNode(baseTerm)
 
-            relLabel = $"{g.GetNode(term.id).label} {rel.type.Description} {g.GetNode(rel.parent.Name).label}"
+            relLabel = $"{term.id} {rel.type.Description} {baseTerm.id}"
 
             ' 已经添加过了
             ' 则后面的都不需要再做添加了
