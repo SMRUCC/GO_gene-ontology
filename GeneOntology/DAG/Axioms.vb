@@ -58,4 +58,18 @@ Public Module Axioms
     Public Function Infer(go As GO_OBO, a$, b$) As OntologyRelations
 
     End Function
+
+    ''' <summary>
+    ''' 计算出``A -> C``的关系，C是A和B的基础类型
+    ''' </summary>
+    ''' <param name="from">A -> B</param>
+    ''' <param name="[to]">B -> C</param>
+    ''' <returns></returns>
+    Public Function InferRule(from As OntologyRelations, [to] As OntologyRelations) As OntologyRelations
+        If [to] > from Then
+            Return [to]
+        Else
+            Return from
+        End If
+    End Function
 End Module
