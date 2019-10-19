@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -18,19 +19,60 @@ Public Module DAGModel
     Public Function CreateGraph(go As GO_OBO, terms As IEnumerable(Of String)) As NetworkGraph
         Dim g As New NetworkGraph
         Dim termsTable As Dictionary(Of String, Term) = go.CreateTermTable
+        Dim relIndex As New Index(Of String)
 
         ' 每一个term都单独构建出一条通往base namespace的途径
         For Each termId As String In terms.SafeQuery
-            Dim term As Term = termsTable(termId)
-            Dim relations As New OBO.OntologyRelations(term)
-
-            ' add itself as node
-            Call g.tryInsertNode(term)
-
+            Call termsTable(termId).addTerm(g, termsTable, relIndex)
         Next
 
         Return g
     End Function
+
+    <Extension>
+    Private Sub addTerm(term As Term, g As NetworkGraph, termsTable As Dictionary(Of String, Term), relIndex As Index(Of String))
+        Dim relations As New OBO.OntologyRelations(term)
+        Dim relLink As Edge
+        Dim relLabel$
+        Dim baseTerm As Term
+
+        ' add itself as node
+        Call g.tryInsertNode(term)
+
+        For Each rel In relations.AsEnumerable
+            baseTerm = termsTable(rel.parent.Name)
+
+            ' 边的连接是有方向的
+            Call g.tryInsertNode(baseTerm)
+
+            relLabel = $"{g.GetNode(term.id).label} {rel.type.Description} {g.GetNode(rel.parent.Name).label}"
+
+            ' 已经添加过了
+            ' 则后面的都不需要再做添加了
+            If relLabel Like relIndex Then
+                Continue For
+            Else
+                relIndex += relLabel
+            End If
+
+            relLink = New Edge With {
+                .U = g.GetNode(term.id),
+                .V = g.GetNode(rel.parent.Name),
+                .isDirected = True,
+                .weight = rel.type,
+                .data = New EdgeData With {
+                    .weight = rel.type,
+                    .label = relLabel,
+                    .Properties = New Dictionary(Of String, String) From {
+                        {"relationship", rel.type.Description}
+                    }
+                }
+            }
+
+            Call g.AddEdge(relLink)
+            Call baseTerm.addTerm(g, termsTable, relIndex)
+        Next
+    End Sub
 
     ''' <summary>
     ''' 在这里会尝试处理重复出现的term对象
