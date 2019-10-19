@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ComponentModel.Collection
+Imports Microsoft.VisualBasic.Data.visualize.Network.FileStream.Generic
 Imports Microsoft.VisualBasic.Data.visualize.Network.Graph
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Serialization.JSON
@@ -64,7 +65,8 @@ Public Module DAGModel
                     .weight = rel.type,
                     .label = relLabel,
                     .Properties = New Dictionary(Of String, String) From {
-                        {"relationship", rel.type.Description}
+                        {"relationship", rel.type.Description},
+                        {NamesOf.REFLECTION_ID_MAPPING_INTERACTION_TYPE, rel.type.Description}
                     }
                 }
             }
